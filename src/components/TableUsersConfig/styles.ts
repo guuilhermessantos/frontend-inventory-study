@@ -4,17 +4,20 @@ import styled from "styled-components"
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
-  width: 80%;
-  align-items: center;
-  justify-content: center;
+  width: 100%;
+  margin-top: 20px;
+  background-color: #E6E6E6;
+  padding: 0px 25px 200px 25px;
+  height: 500px;
+  border-radius: 20px;
+  overflow-x: auto;
   `;
 
 
-export const TitleTable = styled.span`
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  `;
+
+
+
+
 export const Table = styled.table`
   width: 100%;
   border-spacing: 0 0.5rem;
@@ -37,8 +40,12 @@ export const TitleColumn = styled.th`
   text-align: center;
   justify-content: center;
   line-height: 0.90rem;
-  background: #A6A3A3;
-  border-radius: 0.09rem;
+  background: var(--red);
+  border-radius: 0.08rem;
+  font-size: 14px;
+
+  flex-direction: column;
+  text-align: center;
   align-items: center;
   justify-content: center;
   `;
@@ -46,9 +53,9 @@ export const TableBody = styled.tbody``;
 export const TableData = styled.td`
   padding: 0.8rem 1.2rem;
   border: 0;
-  background: #D8D8D8;
+  background: var(--silver);
   color: #000;
-  border-radius: 0.09rem;
+  border-radius: 0.10rem;
   align-items: center;
   justify-content: center;
   `;
@@ -108,22 +115,4 @@ export const ButtonDel = styled.button`
     filter: brightness(0.8)
   }
   `;
-  export const DivButton = styled.div`
-    display: flex;
-   justify-content: flex-end;
-  `;
   
-  export const ButtonAdd = styled.button`
-    font-size: 1rem; // 16 pixels de font
-    color: #FFFFFF;  // 
-    background: #6CC356; //
-    border: 0;
-    padding: 0 2rem; // 32 pixels na direita e esquerda
-    border-radius: 0.25rem;
-    height: 3rem;
-    cursor: pointer;
-    transition: filter 0.2s; // deixa mais leve a transição do brightness
-    &:hover {
-      filter: brightness(0.9) // vai levemente escurecer o botão ao passar por cima
-    }
-  `;

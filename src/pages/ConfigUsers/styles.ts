@@ -33,33 +33,35 @@ export const ContainerBody = styled.div`
   justify-content: center;
   justify-content: space-between;
   
-  
 
 `;
 export const DivTable = styled.div`
 display: flex;
 width: 65%;
 flex-direction: column;
-margin-left: 3px;
-margin-right: 5px;
+margin-left: 5px;
+
 `;
 export const TitleTable = styled.span`
   color: white;
+  height: 50px;
   display: flex;
   align-items: center;
   justify-content: center;
   font: 700 50px 'Roboto', sans-serif;
   text-align: justify;
+  
   `;
+
 export const DivTitle = styled.div`
-margin-top: 100px;
-
-
-width: 37%;
-display: flex;
-position: absolute;
-align-items: center;
-justify-content: center;
+  margin-top: 250px;
+  
+  width: 37%;
+  display: flex;
+  background-color: red;
+  position: absolute;
+  align-items: center;
+  justify-content: center;
 `;
 
 export const DivImage = styled.div`
@@ -73,7 +75,7 @@ export const DivImage = styled.div`
 
 export const DivButton = styled.div`
     display: flex;
-   justify-content: flex-end;
+   justify-content: flex-start;
   `;
   
   export const ButtonAdd = styled.button`
