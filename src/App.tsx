@@ -4,15 +4,21 @@ import { GlobalStyle } from './styles/global/global';
 import { DashBoard } from './pages/DashBoard';
 import { ConfigUsers } from './pages/ConfigUsers';
 import UpdateProductContext from './context/updateProductContext';
+import {BrowserRouter,Route} from 'react-router-dom'
 
 
 function App() {
   return (
-    <UpdateProductContext>
-      <DashBoard />
-      {/* <ConfigUsers /> */}
-      <GlobalStyle />
-    </UpdateProductContext>
+  <UpdateProductContext>
+    <BrowserRouter>
+    {/* <Route path=""  element={<DashBoard />} />
+    <Route path="/users" element={<ConfigUsers />} /> */}
+
+    
+        <DashBoard />
+        <GlobalStyle />
+    </BrowserRouter>
+  </UpdateProductContext>
   );
 }
 

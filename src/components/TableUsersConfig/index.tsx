@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { ButtonDel, ButtonUpdate, ButtonView, Container,Table, TableBody, TableData, TableHeader, TableRow, TitleColumn, } from "./styles";
+import { ButtonDel, ButtonUpdate, Container,Table, TableBody, TableData, TableHeader, TableRow, TitleColumn, } from "./styles";
 import api from "../../services/api"
 import { format } from 'date-fns';
 
 
+
 interface ITableUsersProps {
-    onOpenModalRegister: () => void;
     onOpenModalUpdate: () => void
-    onOpenModalView: () => void
   }
 
 interface IUsers {
@@ -19,9 +18,22 @@ interface IUsers {
 }
 
 
-export function TableUsersConfig({ onOpenModalRegister, onOpenModalUpdate, onOpenModalView } : ITableUsersProps) {
+export function TableUsersConfig({  onOpenModalUpdate} : ITableUsersProps) {
 
   const [users, setUsers] = useState<IUsers[]>([]);
+ 
+
+  async function deleteUser(id: string) {
+    try {
+      await api.delete(`users/${id}`);
+      
+      setUsers((oldUsers) =>
+        oldUsers.filter((user) => user.id !== id)
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  }
 
   useEffect(() => {
     api.get(`users`).then((response) => {
@@ -30,7 +42,7 @@ export function TableUsersConfig({ onOpenModalRegister, onOpenModalUpdate, onOpe
       
       
     });
-  }, []);
+  }, [users]);
 
     
     return (
@@ -39,12 +51,11 @@ export function TableUsersConfig({ onOpenModalRegister, onOpenModalUpdate, onOpe
         <Table>
           <TableHeader>
             <TableRow>
-              <TitleColumn> Nome do Usuario </TitleColumn>
+              <TitleColumn> Nome<br/>do Usuario </TitleColumn>
               <TitleColumn> E-mail </TitleColumn>
               <TitleColumn> Admin </TitleColumn>
-              <TitleColumn> Criação da conta </TitleColumn>
+              <TitleColumn> Criação<br/>da conta </TitleColumn>
               <TitleColumn> Editar </TitleColumn>
-              <TitleColumn> Visualizar </TitleColumn>
               <TitleColumn> Deletar </TitleColumn>
             </TableRow>
           </TableHeader>
@@ -60,13 +71,8 @@ export function TableUsersConfig({ onOpenModalRegister, onOpenModalUpdate, onOpe
                 Editar
               </ButtonUpdate>
             </TableData>
-            <TableData>
-              <ButtonView type="submit" onClick={onOpenModalView} id = "btnView">
-                Visualizar
-              </ButtonView>
-            </TableData>
             <TableData> 
-              <ButtonDel type="submit" id = "btnDelet">
+              <ButtonDel type="submit" id = "btnDelet" onClick={() => deleteUser(user.id)}>
                 Deletar
               </ButtonDel> 
             </TableData>

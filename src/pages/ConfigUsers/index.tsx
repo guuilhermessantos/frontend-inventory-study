@@ -3,16 +3,16 @@ import { Footer } from "../../components/Footer";
 import { Header } from "../../components/Header";
 import { ModalUsersRegister } from "../../components/ModalUsersRegister";
 import { ModalUsersUpdate } from "../../components/ModalUsersUpdate";
-import { ModalUsersView } from "../../components/ModalUsersView";
+
 import { TableUsersConfig } from "../../components/TableUsersConfig";
-import { ButtonAdd, Container, ContainerBody, DivButton, DivImage, DivTable, DivTitle, ImageInventory, TitleTable } from "./styles";
+import { ButtonAdd,  Container, ContainerBody, DivButton, DivImage, DivTable, DivTitle, ImageInventory, TitleTable } from "./styles";
 
 export function ConfigUsers (){
     
 
     const [isModalUserRegister,setIsModalUserRegister] = useState(false)
     const [isModalUserUpdate,setIsModalUserUpdate] = useState(false)
-    const [isModalUserView,setIsModalUserView] = useState(false)
+ 
 
 
 
@@ -23,12 +23,7 @@ export function ConfigUsers (){
     setIsModalUserUpdate(true);
   }
 
-  function handleCloseModalViewUsers() {
-    setIsModalUserView(false);
-  }
-  function handleOpenModalViewUsers() {
-    setIsModalUserView(true);
-  }
+
   function handleCloseModalUsersRegister() {
     setIsModalUserRegister(false);
   }
@@ -36,26 +31,23 @@ export function ConfigUsers (){
     setIsModalUserRegister(true);
   }
 
-
-
-
-  
     return (
       <Container>
         <Header />
         <ContainerBody>
           <DivTable>
             
-          <TableUsersConfig onOpenModalRegister={handleOpenModalUsersRegister}  onOpenModalUpdate={handleOpenModalUpdateUsers} onOpenModalView={handleOpenModalViewUsers}/>
+          <TableUsersConfig   onOpenModalUpdate={handleOpenModalUpdateUsers} />
             <DivButton>
               <ButtonAdd type="button" onClick={() => handleOpenModalUsersRegister()} >
                 Adicionar
               </ButtonAdd>
+              
             </DivButton>
           </DivTable>
         <DivImage>
           <DivTitle>
-            <TitleTable> Controle <br/>     de<br/>     produto </TitleTable>
+            <TitleTable> Configuração <br/>de Usuarios </TitleTable>
           </DivTitle>
             <ImageInventory src="configUsers.png" alt="" />
             
@@ -66,7 +58,6 @@ export function ConfigUsers (){
 
           <ModalUsersRegister isOpen={isModalUserRegister} onRequestClose={handleCloseModalUsersRegister}/>
           <ModalUsersUpdate isOpen={isModalUserUpdate} onRequestClose={handleCloseModalUpdateUsers}/>
-          <ModalUsersView isOpen={isModalUserView} onRequestClose={handleCloseModalViewUsers}/>
 
 
 

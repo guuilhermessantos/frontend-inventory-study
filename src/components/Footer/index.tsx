@@ -1,4 +1,4 @@
-import { NotOverlap, FooterFix, DescriptionFooter } from "./styles";
+import { NotOverlap, FooterFix, DescriptionFooter, DivFooter, Logo } from "./styles";
 
 
 
@@ -9,7 +9,10 @@ export function Footer () {
                 
             </NotOverlap>
             <FooterFix>
-                <DescriptionFooter>ActionSys</DescriptionFooter>
+                <DivFooter>
+                    <Logo src="actionLogo.png" alt="" />
+                    <DescriptionFooter>ActionSys</DescriptionFooter>
+                </DivFooter>
             </FooterFix>
          </>
 

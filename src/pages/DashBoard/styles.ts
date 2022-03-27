@@ -72,8 +72,9 @@ export const DivImage = styled.div`
 `;
 
 export const DivButton = styled.div`
+  width: 100%;
     display: flex;
-   justify-content: flex-end;
+   justify-content: space-between;
   `;
   
   export const ButtonAdd = styled.button`
@@ -91,4 +92,26 @@ export const DivButton = styled.div`
       filter: brightness(0.9) // vai levemente escurecer o botão ao passar por cima
     }
   `;
+  export const ButtonConfigUsers = styled.button`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 30%;
+    margin-top: 5px;
+    font-size: 1rem; // 16 pixels de font
+    color: #FFFFFF;  // 
+    background: #6CC356; //
+    border: 0;
+    padding: 0 2rem; // 32 pixels na direita e esquerda
+    border-radius: 0.25rem;
+    height: 3rem;
+    cursor: pointer;
+    transition: filter 0.2s; // deixa mais leve a transição do brightness
+    &:hover {
+      filter: brightness(0.9) // vai levemente escurecer o botão ao passar por cima
+    }
+  `;
+
+
 

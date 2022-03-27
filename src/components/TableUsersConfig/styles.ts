@@ -7,7 +7,7 @@ export const Container = styled.div`
   width: 100%;
   margin-top: 20px;
   background-color: #E6E6E6;
-  padding: 0px 25px 200px 25px;
+  padding: 0px 10px 200px 25px;
   height: 500px;
   border-radius: 20px;
   overflow-x: auto;
@@ -58,6 +58,7 @@ export const TableData = styled.td`
   border-radius: 0.10rem;
   align-items: center;
   justify-content: center;
+  font-size: 13px;
   `;
 
 
@@ -78,23 +79,6 @@ export const ButtonUpdate = styled.button`
   transition: filter 0.2s;
   &:hover {
     filter: brightness(0.8);
-  }
-  `;
-export const ButtonView = styled.button`
-  background-color: #68BBBB;
-  width: 80px;
-  border-radius: 5px;
-  border: none;
-  margin-top: -3px;
-  cursor: pointer;
-  color: #fff;
-  box-shadow: 0px 1px 3px 0px #222;
-  font-size: 12px;
-  font-weight: bold !important;
-  height: 30px;
-  transition: filter 0.2s;
-  &:hover {
-    filter: brightness(0.8)
   }
   `;
 

@@ -42,7 +42,7 @@ export function ModalUsersUpdate({ isOpen, onRequestClose }: IModalUpdateProps) 
           <InputUser placeholder="Nome do Usuario" />
 
           <InputUser placeholder="Email" />
-          <InputUser placeholder="Admin" />
+          <InputUser placeholder="Senha" type={"password"} />
 
           <ButtonRegister type="submit">Salvar</ButtonRegister>
       

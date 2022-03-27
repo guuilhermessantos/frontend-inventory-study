@@ -3,26 +3,18 @@ import { Footer } from "../../components/Footer";
 import { Header } from "../../components/Header";
 import { ModalProductsRegister } from "../../components/ModalProductsRegister";
 import { ModalProductsUpdate } from "../../components/ModalProductsUpdate";
-import { ModalProductsView } from "../../components/ModalProductsView";
 import { TableProductsConfig } from "../../components/TableProductsConfig";
+import { FaUsers } from "react-icons/fa";
 
 
 
-import { ButtonAdd, Container, ContainerBody, DivButton, DivImage, DivTable, DivTitle, ImageInventory, TitleTable } from "./styles";
+import { ButtonAdd, ButtonConfigUsers, Container, ContainerBody, DivButton, DivImage, DivTable, DivTitle, ImageInventory, TitleTable } from "./styles";
 
 
 export function DashBoard() {
 
-
-
-    const [isModalProductRegister,setIsModalProductRegister] = useState(false)
-    const [isModalProductUpdate,setIsModalProductUpdate] = useState(false)
-    const [isModalProductView,setIsModalProductView] = useState(false)
- 
-  
-
-
-
+  const [isModalProductRegister,setIsModalProductRegister] = useState(false)
+  const [isModalProductUpdate,setIsModalProductUpdate] = useState(false)
  
 
   function handleCloseModalProductRegister() {
@@ -37,12 +29,7 @@ export function DashBoard() {
   function handleOpenModalProductUpdate() {
     setIsModalProductUpdate(true);
   }
-  function handleCloseModalViewUpdate() {
-    setIsModalProductView(false);
-  }
-  function handleOpenModalViewUpdate() {
-    setIsModalProductView(true);
-  }
+
   
     return (
       <Container>
@@ -57,20 +44,23 @@ export function DashBoard() {
           </DivImage>
           <DivTable>
             
-            <TableProductsConfig onOpenModalRegister={handleOpenModalProductRegister}  onOpenModalUpdate={handleOpenModalProductUpdate} onOpenModalView={handleOpenModalViewUpdate}/>
+            <TableProductsConfig   onOpenModalUpdate={handleOpenModalProductUpdate} />
             <DivButton>
               <ButtonAdd type="button" onClick={() => handleOpenModalProductRegister()} >
-                Adicionar
+                Adicionar Produto
               </ButtonAdd>
+              <ButtonConfigUsers type="button"  >
+                
+                    <FaUsers name="login" size={25} color="white" />
+              
+                Configurar Usuarios
+              </ButtonConfigUsers>
             </DivButton>
           </DivTable>
         </ContainerBody>
           
-
-
           <ModalProductsRegister isOpen={isModalProductRegister} onRequestClose={handleCloseModalProductRegister}/>
           <ModalProductsUpdate isOpen={isModalProductUpdate} onRequestClose={handleCloseModalProductUpdate}/>
-          <ModalProductsView isOpen={isModalProductView} onRequestClose={handleCloseModalViewUpdate}/>
 
 
 

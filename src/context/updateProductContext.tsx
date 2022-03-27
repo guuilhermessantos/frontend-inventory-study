@@ -32,7 +32,7 @@ export default function UpdateProductContext({ children }: any) {
     const [createdAt, setCreatedAt] = useState("");
     const [updateAt, setUpdateAt] = useState("");
 
-  
+   
   return (
     <UpdateProduct.Provider
       value={{

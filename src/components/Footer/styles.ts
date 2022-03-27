@@ -13,13 +13,25 @@ export const FooterFix = styled.footer`
     height: 40px;
     position: fixed;
     width: 100%;
+    display: flex;
+    
     align-items: center;
     justify-content: center;
     text-align: center;
 `;
 
+export const DivFooter = styled.div`
+    display: flex;
+    flex-direction: column;
+`;
+export const Logo = styled.img`
+margin-left: 10px;
+    width: 20px;
+    height: 16px;
+`;
+
 export const DescriptionFooter = styled.span`
-    padding-top: 10px;
+    font-size: 9px;
     text-align: center;
     justify-content: center;
     align-items: center;

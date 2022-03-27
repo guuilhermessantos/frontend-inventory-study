@@ -7,7 +7,7 @@ export const Container = styled.div`
   width: 100%;
   margin-top: 20px;
   background-color: #E6E6E6;
-  padding: 0px 25px 0px 25px;
+  padding: 0px 10px 0px 25px;
   height: 500px;
   border-radius: 20px;
   overflow-y: auto;
@@ -35,14 +35,14 @@ export const TableRow = styled.tr`
 `;
 export const TitleColumn = styled.th`
   color: #FFFF;
-  font-weight: 500;
+  font-weight: 700;
   padding: 1rem 0 1.5rem;
   text-align: center;
   justify-content: center;
   line-height: 0.90rem;
   background: var(--red);
   border-radius: 0.08rem;
-  font-size: 14px;
+  font-size: 13px;
 
   flex-direction: column;
   text-align: center;
@@ -58,10 +58,8 @@ export const TableData = styled.td`
   border-radius: 0.10rem;
   align-items: center;
   justify-content: center;
+  font-size: 13px;
   `;
-
-
-
 
 export const ButtonUpdate = styled.button`
   background-color: #E49B2E;
@@ -78,23 +76,6 @@ export const ButtonUpdate = styled.button`
   transition: filter 0.2s;
   &:hover {
     filter: brightness(0.8);
-  }
-  `;
-export const ButtonView = styled.button`
-  background-color: #68BBBB;
-  width: 80px;
-  border-radius: 5px;
-  border: none;
-  margin-top: -3px;
-  cursor: pointer;
-  color: #fff;
-  box-shadow: 0px 1px 3px 0px #222;
-  font-size: 12px;
-  font-weight: bold !important;
-  height: 30px;
-  transition: filter 0.2s;
-  &:hover {
-    filter: brightness(0.8)
   }
   `;
 
@@ -114,5 +95,5 @@ export const ButtonDel = styled.button`
   &:hover {
     filter: brightness(0.8)
   }
-  `;
+`;
   

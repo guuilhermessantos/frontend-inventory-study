@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { ButtonDel, ButtonUpdate, ButtonView, Container, Table, TableBody, TableData, TableHeader, TableRow, TitleColumn, } from "./styles";
+import { ButtonDel, ButtonUpdate, Container, Table, TableBody, TableData, TableHeader, TableRow, TitleColumn, } from "./styles";
 import api from "../../services/api"
 import { format } from "date-fns"
+import { useUpdateProduct } from '../../context/updateProductContext';
 
 interface ITableProductsProps {
-  onOpenModalRegister: () => void;
+
   onOpenModalUpdate: () => void
-  onOpenModalView: () => void
+
   }
 
   interface IProducts {
@@ -15,13 +16,35 @@ interface ITableProductsProps {
     obs_product: string;
     quantity: number;
     created_at: string;
+    updated_at: string;
   }
 
 
-export function TableProductsConfig({ onOpenModalRegister, onOpenModalUpdate, onOpenModalView } : ITableProductsProps) {
+export function TableProductsConfig({ onOpenModalUpdate } : ITableProductsProps) {
 
   
   const [products, setProducts] = useState<IProducts[]>([]);
+  const { id, setId } = useUpdateProduct();
+  const { id_creator, setIdCreator } = useUpdateProduct();
+  const { name_products, setNameProduct } = useUpdateProduct();
+  const { obs_products, setObsProducts } = useUpdateProduct();
+  const { quantity, setQuantity } = useUpdateProduct();
+  const { created_at, setCreatedAt } = useUpdateProduct();
+  const { update_at, setUpdateAt } = useUpdateProduct();
+
+  function editProduct(id: string) {
+    setId(id);
+    setIdCreator(id_creator);
+    setNameProduct(name_products);
+    setObsProducts(obs_products);
+    setQuantity(quantity);
+    setCreatedAt(created_at);
+    setUpdateAt(update_at);
+
+    console.log('id', id)
+  
+    
+  }
 
   async function deleteProduct(id: string) {
     try {
@@ -34,6 +57,7 @@ export function TableProductsConfig({ onOpenModalRegister, onOpenModalUpdate, on
       console.log(error);
     }
   }
+
 
   useEffect(() => {
     api.get(`products`).then((response) => {
@@ -50,12 +74,12 @@ export function TableProductsConfig({ onOpenModalRegister, onOpenModalUpdate, on
         <Table>
           <TableHeader>
             <TableRow>
-              <TitleColumn>Nome do Produto </TitleColumn>
-              <TitleColumn>Observação do Produto</TitleColumn>
+              <TitleColumn>Nome do<br/>Produto </TitleColumn>
+              <TitleColumn>Observação<br/>do Produto</TitleColumn>
               <TitleColumn>Quantidade</TitleColumn>
-              <TitleColumn>Criação do Registro</TitleColumn>
+              <TitleColumn>Criação<br/>do Registro</TitleColumn>
+              <TitleColumn>Atualização<br/>do Registro</TitleColumn>
               <TitleColumn>Editar</TitleColumn>
-              <TitleColumn>Visualizar</TitleColumn>
               <TitleColumn>Deletar</TitleColumn>
             </TableRow>
           </TableHeader>
@@ -66,19 +90,16 @@ export function TableProductsConfig({ onOpenModalRegister, onOpenModalUpdate, on
             <TableData> {product.name_product} </TableData>
             <TableData> {product.obs_product} </TableData>
             <TableData> {product.quantity} </TableData>
-            <TableData> {format( new Date (product.created_at), "dd/MM/yyyy HH:mm:ss")}</TableData>
+            <TableData> {format( new Date (product.created_at), "dd/MM/yyyy HH:mm:ss")} </TableData>
+            <TableData> {format( new Date (product.updated_at), "dd/MM/yyyy HH:mm:ss")} </TableData>
             <TableData> 
-              <ButtonUpdate type="submit" onClick={onOpenModalUpdate} id = "btnEdit">
+              <ButtonUpdate type="submit" onClick={() => {onOpenModalUpdate()
+              editProduct(product.id)} } >
                 Editar
               </ButtonUpdate>
             </TableData>
-            <TableData>
-              <ButtonView type="submit" onClick={onOpenModalView} id = "btnView">
-                Visualizar
-              </ButtonView>
-            </TableData>
             <TableData> 
-              <ButtonDel type="submit" id = "btnDelet" onClick={() => deleteProduct(product.id)}>
+              <ButtonDel type="submit" id = "btnDelet" onClick={() =>{deleteProduct(product.id) }}>
                 Deletar
               </ButtonDel> 
             </TableData>

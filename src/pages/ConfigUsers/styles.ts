@@ -54,11 +54,10 @@ export const TitleTable = styled.span`
   `;
 
 export const DivTitle = styled.div`
-  margin-top: 250px;
+  margin-top: 5px;
   
   width: 37%;
   display: flex;
-  background-color: red;
   position: absolute;
   align-items: center;
   justify-content: center;
@@ -74,8 +73,9 @@ export const DivImage = styled.div`
 `;
 
 export const DivButton = styled.div`
+    width: 100%;
     display: flex;
-   justify-content: flex-start;
+    justify-content: space-between;
   `;
   
   export const ButtonAdd = styled.button`
@@ -93,4 +93,6 @@ export const DivButton = styled.div`
       filter: brightness(0.9) // vai levemente escurecer o botão ao passar por cima
     }
   `;
+
+
 

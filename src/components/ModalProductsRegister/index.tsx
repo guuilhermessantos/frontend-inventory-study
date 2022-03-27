@@ -29,7 +29,7 @@ export function ModalProductsRegister({ isOpen, onRequestClose }: IModalRegister
   const [quantity, setQuantity] = useState("");
   const [products, setProduct] = useState<IProduct[]>([]);
 
-  async function handleRegister() {
+  async function handleRegisterProduct() {
     
     try {
       const { data } = await api.post("products", {
@@ -78,7 +78,7 @@ export function ModalProductsRegister({ isOpen, onRequestClose }: IModalRegister
           <InputUser placeholder="Quantidade" onChange={(e) => setQuantity(e.target.value)} />
 
           <ButtonRegister type="submit" onClick={() => {
-            handleRegister()
+            handleRegisterProduct()
             }}>Cadastrar</ButtonRegister>
         </div>
       </Modal>
