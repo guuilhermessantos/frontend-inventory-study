@@ -81,7 +81,7 @@ export const DivButton = styled.div`
     margin-top: 5px;
     font-size: 1rem; // 16 pixels de font
     color: #FFFFFF;  // 
-    background: #6CC356; //
+    background: var(--green); //
     border: 0;
     padding: 0 2rem; // 32 pixels na direita e esquerda
     border-radius: 0.25rem;
@@ -101,7 +101,7 @@ export const DivButton = styled.div`
     margin-top: 5px;
     font-size: 1rem; // 16 pixels de font
     color: #FFFFFF;  // 
-    background: #6CC356; //
+    background: var(--blue); //
     border: 0;
     padding: 0 2rem; // 32 pixels na direita e esquerda
     border-radius: 0.25rem;

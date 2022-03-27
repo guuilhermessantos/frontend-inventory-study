@@ -12,7 +12,7 @@ interface IProducts {
     setId: React.Dispatch<React.SetStateAction<string>>;
     setIdCreator: React.Dispatch<React.SetStateAction<string>>;
     setNameProduct: React.Dispatch<React.SetStateAction<string>>;
-    setObsProducts: React.Dispatch<React.SetStateAction<string>>;
+    setObsProduct: React.Dispatch<React.SetStateAction<string>>;
     setQuantity: React.Dispatch<React.SetStateAction<string>>;
     setCreatedAt: React.Dispatch<React.SetStateAction<string>>;
     setUpdateAt: React.Dispatch<React.SetStateAction<string>>;
@@ -25,12 +25,12 @@ const UpdateProduct = createContext({});
 export default function UpdateProductContext({ children }: any) {
     
     const [id, setId] = useState("");
-    const [idCreator, setIdCreator] = useState("");
-    const [nameProduct, setNameProduct] = useState("");
-    const [obsProducts, setObsProducts] = useState("");
+    const [id_creator, setIdCreator] = useState("");
+    const [name_products, setNameProduct] = useState("");
+    const [obs_products, setObsProduct] = useState("");
     const [quantity, setQuantity] = useState(0);
-    const [createdAt, setCreatedAt] = useState("");
-    const [updateAt, setUpdateAt] = useState("");
+    const [created_at, setCreatedAt] = useState("");
+    const [update_at, setUpdateAt] = useState("");
 
    
   return (
@@ -38,17 +38,17 @@ export default function UpdateProductContext({ children }: any) {
       value={{
         id,
         setId,
-        idCreator,
+        id_creator,
         setIdCreator,
-        nameProduct,
+        name_products,
         setNameProduct,
-        obsProducts,
-        setObsProducts,
+        obs_products,
+        setObsProduct,
         quantity,
         setQuantity,
-        createdAt,
+        created_at,
         setCreatedAt,
-        updateAt,
+        update_at,
         setUpdateAt,
       }}
     >
@@ -65,7 +65,7 @@ export function useUpdateProduct() {
   const { id, setId } = context;
   const { id_creator, setIdCreator } = context;
   const { name_products, setNameProduct } = context;
-  const { obs_products, setObsProducts } = context;
+  const { obs_products, setObsProduct } = context;
   const { quantity, setQuantity } = context;
   const { created_at, setCreatedAt } = context;
   const { update_at, setUpdateAt } = context;

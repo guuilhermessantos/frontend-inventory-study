@@ -45,17 +45,3 @@ export const RowButtonDiv = styled.div`
    margin-right: 1%;
   `;
   
-  export const ButtonUsers = styled.button`
-    font-size: 15px; // 16 pixels de font
-    color: #FFFFFF;  // 
-    background: #6CC356; //
-    border: 0;
-    padding: 0 2rem; // 32 pixels na direita e esquerda
-    border-radius: 0.25rem;
-    height: 3rem;
-    cursor: pointer;
-    transition: filter 0.2s; // deixa mais leve a transição do brightness
-    &:hover {
-      filter: brightness(0.9) // vai levemente escurecer o botão ao passar por cima
-    }
-  `;

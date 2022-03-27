@@ -9,12 +9,19 @@ import { FaUsers } from "react-icons/fa";
 
 
 import { ButtonAdd, ButtonConfigUsers, Container, ContainerBody, DivButton, DivImage, DivTable, DivTitle, ImageInventory, TitleTable } from "./styles";
+import { useNavigate } from "react-router-dom";
 
 
 export function DashBoard() {
 
   const [isModalProductRegister,setIsModalProductRegister] = useState(false)
   const [isModalProductUpdate,setIsModalProductUpdate] = useState(false)
+  const navigate = useNavigate()
+
+
+  function pageConfigUsers() {
+    navigate("/users")
+  }
  
 
   function handleCloseModalProductRegister() {
@@ -49,10 +56,8 @@ export function DashBoard() {
               <ButtonAdd type="button" onClick={() => handleOpenModalProductRegister()} >
                 Adicionar Produto
               </ButtonAdd>
-              <ButtonConfigUsers type="button"  >
-                
-                    <FaUsers name="login" size={25} color="white" />
-              
+              <ButtonConfigUsers type="button" onClick={pageConfigUsers}  >
+                <FaUsers name="login" size={25} color="white" />
                 Configurar Usuarios
               </ButtonConfigUsers>
             </DivButton>

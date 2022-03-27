@@ -9,8 +9,10 @@ import {
   BtnCloseContainer,
 } from "./styles";
 import { FaTimes } from "react-icons/fa";
-import { useUpdateProduct } from "../../context/updateProductContext";
+
 import api from "../../services/api";
+import { useUpdateProduct } from "../../context/updateProductContext";
+
 
 interface IModalUpdateProps {
   isOpen: boolean,
@@ -21,23 +23,24 @@ interface IModalUpdateProps {
 interface IProduct {
   name_product: string;
   obs_product: string;
-  quantity: number;
+  quantity: string;
 }
 
 export function ModalProductsUpdate({ isOpen, onRequestClose }: IModalUpdateProps) {
   const { id, setId } = useUpdateProduct();
   const { id_creator, setIdCreator } = useUpdateProduct();
   const { name_products, setNameProduct } = useUpdateProduct();
-  const { obs_products, setObsProducts } = useUpdateProduct();
+  const { obs_products, setObsProduct } = useUpdateProduct();
   const { quantity, setQuantity } = useUpdateProduct();
   const { created_at, setCreatedAt } = useUpdateProduct();
   const { update_at, setUpdateAt } = useUpdateProduct();
   const [products, setProduct] = useState<IProduct[]>([]);
 
-  async function handleUpdateProduct() {
+
+  async function handleUpdateProduct(id: string) {
     
     try {
-      const { data } = await api.put("products", {
+      const { data } = await api.put(`products/${id}`, {
         id: "e9201d78-c3ba-4faa-9503-2074c145c254",
         name_product: name_products,
         obs_product: obs_products,
@@ -79,10 +82,10 @@ export function ModalProductsUpdate({ isOpen, onRequestClose }: IModalUpdateProp
 
           <InputUser placeholder="Nome do Produto" value={name_products} onChange={(e) => setNameProduct(e.target.value)}/>
 
-          <InputUser placeholder="Observação do Produto" value={obs_products} onChange={(e) => setObsProducts(e.target.value)}/>
-          <InputUser placeholder="Quantidade" value={quantity} onChange={(e) => setQuantity(e.target.value)}/>
+          <InputUser placeholder="Observação do Produto" value={obs_products} onChange={(e) => setObsProduct(e.target.value)}/>
+          <InputUser placeholder="Quantidade" value={quantity} type={"number"} onChange={(e) => setQuantity(e.target.value)}/>
 
-          <ButtonRegister type="submit" onClick={() => handleUpdateProduct()}>Salvar</ButtonRegister>
+          <ButtonRegister type="submit" onClick={() => handleUpdateProduct(id)}>Salvar</ButtonRegister>
         </div>
       </Modal>
     </Container>

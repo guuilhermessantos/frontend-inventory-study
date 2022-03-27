@@ -4,6 +4,8 @@ import api from "../../services/api"
 import { format } from "date-fns"
 import { useUpdateProduct } from '../../context/updateProductContext';
 
+
+
 interface ITableProductsProps {
 
   onOpenModalUpdate: () => void
@@ -14,7 +16,7 @@ interface ITableProductsProps {
     id: string;
     name_product: string;
     obs_product: string;
-    quantity: number;
+    quantity: string;
     created_at: string;
     updated_at: string;
   }
@@ -25,24 +27,25 @@ export function TableProductsConfig({ onOpenModalUpdate } : ITableProductsProps)
   
   const [products, setProducts] = useState<IProducts[]>([]);
   const { id, setId } = useUpdateProduct();
-  const { id_creator, setIdCreator } = useUpdateProduct();
+  const { id_creator, setIdCreator } =useUpdateProduct();
   const { name_products, setNameProduct } = useUpdateProduct();
-  const { obs_products, setObsProducts } = useUpdateProduct();
+  const { obs_products, setObsProduct } = useUpdateProduct();
   const { quantity, setQuantity } = useUpdateProduct();
   const { created_at, setCreatedAt } = useUpdateProduct();
   const { update_at, setUpdateAt } = useUpdateProduct();
+ 
 
-  function editProduct(id: string) {
-    setId(id);
-    setIdCreator(id_creator);
-    setNameProduct(name_products);
-    setObsProducts(obs_products);
-    setQuantity(quantity);
-    setCreatedAt(created_at);
-    setUpdateAt(update_at);
-
-    console.log('id', id)
-  
+  function editProduct(id: string, name_products: string, obs_products: string, quantity: string ) {
+    setId(id)
+    setNameProduct(name_products)
+    setObsProduct(obs_products)
+    setQuantity(quantity)
+    // setId(id);
+    // setNameProduct(name_products);
+    // setObsProduct(obs_products);
+    // setQuantity(quantity);
+    console.log('oi');
+    
     
   }
 
@@ -93,8 +96,7 @@ export function TableProductsConfig({ onOpenModalUpdate } : ITableProductsProps)
             <TableData> {format( new Date (product.created_at), "dd/MM/yyyy HH:mm:ss")} </TableData>
             <TableData> {format( new Date (product.updated_at), "dd/MM/yyyy HH:mm:ss")} </TableData>
             <TableData> 
-              <ButtonUpdate type="submit" onClick={() => {onOpenModalUpdate()
-              editProduct(product.id)} } >
+              <ButtonUpdate type="submit" onClick={() => { onOpenModalUpdate(); editProduct(product.id, product.name_product, product.obs_product, product.quantity  )}} >
                 Editar
               </ButtonUpdate>
             </TableData>

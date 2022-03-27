@@ -7,9 +7,9 @@ import { createGlobalStyle } from "styled-components"
 
     --red: #C72C41;
     --silver: #D8D8D8;
-    --green: #5429cc;
+    --green: #6CC356;
+    --blue: #2E9AFE;
 
-    --blue: #5429cc;
     --blue-light: #6933ff;
     --text-title: #363f5f;
 
