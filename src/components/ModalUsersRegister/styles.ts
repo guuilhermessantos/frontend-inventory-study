@@ -5,7 +5,7 @@ export const Container = styled.form`
 `;
 
 export const TitleModal = styled.h2`
-  color: var(--text-title);
+  color: grey;
   font-size: 1.5rem;
   margin-bottom: 2rem;
   text-align: center;
@@ -54,3 +54,4 @@ export const ButtonRegister = styled.button`
     filter: brightness(0.9);
   }
 `;
+

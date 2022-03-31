@@ -5,7 +5,7 @@ export const Container = styled.form`
 `;
 
 export const TitleModal = styled.h2`
-  color: var(--text-title);
+  color: grey;
   font-size: 1.5rem;
   margin-bottom: 2rem;
   text-align: center;
@@ -53,4 +53,35 @@ export const ButtonRegister = styled.button`
   &:hover {
     filter: brightness(0.9);
   }
+`;
+
+export const TitleAdmin = styled.label`
+  color: grey;
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  text-align: center;
+
+`;
+
+
+export const SelectAdmin = styled.select`
+   width: 100%;
+  padding: 0 1.5rem;
+  height: 2.5rem;
+  border-radius: 0.25rem;
+  border: 1px solid #d7d7d7;
+  background: #e7e9ee;
+  & + input {
+    margin-bottom: 0.5rem;
+    margin-top: 1rem;
+  }
+`;
+
+export const OptionAdmin = styled.option`
+   width: 100%;
+  padding: 0 1.5rem;
+  height: 2.5rem;
+  border-radius: 0.25rem;
+  border: 1px solid #d7d7d7;
+  background: #e7e9ee;
 `;

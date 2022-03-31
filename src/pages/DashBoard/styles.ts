@@ -6,9 +6,6 @@ display: flex;
 flex-direction: column;
 align-items: center;
 justify-content: center;
-/* background-color: var(--background); */
-
-/* background-image: url("assets/InventoryManagement.png"); */
 
 `;
 
@@ -75,15 +72,21 @@ export const DivButton = styled.div`
   width: 100%;
     display: flex;
    justify-content: space-between;
+
   `;
   
   export const ButtonAdd = styled.button`
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 24%;
     margin-top: 5px;
-    font-size: 1rem; // 16 pixels de font
+    font-size: 15px;
     color: #FFFFFF;  // 
     background: var(--green); //
     border: 0;
-    padding: 0 2rem; // 32 pixels na direita e esquerda
+    padding: 25px; // 32 pixels na direita e esquerda
     border-radius: 0.25rem;
     height: 3rem;
     cursor: pointer;
@@ -97,13 +100,13 @@ export const DivButton = styled.div`
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
-    width: 30%;
+    width: 26%;
     margin-top: 5px;
-    font-size: 1rem; // 16 pixels de font
+    font-size: 15px; // 
     color: #FFFFFF;  // 
     background: var(--blue); //
     border: 0;
-    padding: 0 2rem; // 32 pixels na direita e esquerda
+    padding: 25px; // 32 pixels na direita e esquerda
     border-radius: 0.25rem;
     height: 3rem;
     cursor: pointer;

@@ -5,6 +5,7 @@ interface IUsers {
     name: string;
     email: string;
     password: string;
+    confirmPassword: string;
     admin: boolean;
 
 
@@ -12,6 +13,7 @@ interface IUsers {
     setName: React.Dispatch<React.SetStateAction<string>>;
     setEmail: React.Dispatch<React.SetStateAction<string>>;
     setPassword: React.Dispatch<React.SetStateAction<string>>;
+    setConfirmPassword: React.Dispatch<React.SetStateAction<string>>
     setAdmin: React.Dispatch<React.SetStateAction<boolean>>;
     
 }
@@ -26,6 +28,18 @@ export default function UpdateUserContext({ children }: any) {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [admin, setAdmin] = useState("");
+    const [confirmPassword, setConfirmPassword] = useState("")
+
+    // function buscaInfoUser() {
+
+    //   const response = await api.get(`users`)
+    //   const data = response.data
+
+    //   setUser((oldUsers) =>
+    //     oldUsers.filter((user) => user.email !== email)
+
+    //   );
+    // }
   
 
 
@@ -43,6 +57,8 @@ export default function UpdateUserContext({ children }: any) {
         setEmail,
         password,
         setPassword,
+        confirmPassword,
+        setConfirmPassword,
         admin,
         setAdmin,
        
@@ -63,10 +79,8 @@ export function useUpdateUser() {
   const {name, setName} = context;
   const {email, setEmail} = context;
   const { password, setPassword } = context;
+  const {confirmPassword, setConfirmPassword} = context;
   const {admin, setAdmin} = context;
-
-
-  
 
   if (!context) {
     throw new Error("Fail");

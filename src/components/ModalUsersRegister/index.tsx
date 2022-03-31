@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Dispatch, SetStateAction, useState } from "react";
 import Modal from "react-modal";
 import {
   ButtonClose,
@@ -7,46 +7,88 @@ import {
   InputUser,
   TitleModal,
   BtnCloseContainer,
+
 } from "./styles";
 import { FaTimes } from "react-icons/fa";
 import api from "../../services/api";
+import { useToasts } from "@geist-ui/react";
 
 interface IModalRegisterProps {
   isOpen: boolean;
   onRequestClose: () => void;
 }
 
-interface IUsers {
-  name: string,
-	email: string,
-	password: string,
-	admin: boolean
-}
+
 
 export function ModalUsersRegister({ isOpen, onRequestClose }: IModalRegisterProps) {
 
+  const [adminCompare, setCompareAdmin] = useState("")
+
   const [name, setName] = useState("")
   const [email, setEmail] = useState("")
+  const [admin, setAdmin] = useState("")
   const [password, setPassword] = useState("")
-  const [users, setUsers] = useState<IUsers[]>([]);
+  const [confirmPassword, setConfirmPassword] = useState("")
+  const [, setToast] = useToasts();
+  
 
 
   async function handleRegisterUser() {
     
     try {
-      const { data } = await api.post("users", {
+      if (name.length < 3) {
+        return setToast({
+          text: 'Nome precisa estar preenchido!.',
+          type: 'warning'
+        })
+      }
+      if (email.length < 3) {
+        return setToast({
+          text: 'Email precisa estar preenchido!.',
+          type: 'warning'
+        })
+      }
 
+      if (password.length < 1) {
+        return setToast({
+          text: 'Senha precisa estar preenchido!.',
+          type: 'warning'
+        })
+      }
+
+      if (confirmPassword.length < 1) {
+        return setToast({
+          text: 'Confirmação da senha precisa estar preenchido!.',
+          type: 'warning'
+        })
+      }
+
+      if (password !== confirmPassword ) {
+        return setToast({
+            text: 'As senhas precisam ser iguais!.',
+            type: 'warning'
+          })
+      }
+      
+      await api.post("users", {
         name: name,
 	      email: email,
 	      password: password,
 	      admin: false
       });
-      
-      setUsers((state) => [...state, data]);
+      setToast({
+        text: 'Sua conta foi criada com sucesso, acesse nosso sistema!.',
+        type: 'success'
+      })
+
       onRequestClose()
+      setName("")
+      setEmail("")
+      setPassword("")
+      setConfirmPassword("")
       
     } catch (error) {
-      console.log(error);
+      
     }
   }
 
@@ -71,15 +113,17 @@ export function ModalUsersRegister({ isOpen, onRequestClose }: IModalRegisterPro
               <FaTimes />
             </ButtonClose>
           </BtnCloseContainer>
-          <TitleModal>Cadastrar Usuario(a) </TitleModal>
+          <TitleModal>Criando conta...</TitleModal>
 
           <InputUser placeholder="Nome do Usuario"  onChange={(e) => setName(e.target.value)} />
 
           <InputUser placeholder="Email" type={"email"} onChange={(e) => setEmail(e.target.value)} />
 
           <InputUser placeholder="Senha" type={"password"} onChange={(e) => setPassword(e.target.value)} />
-          
 
+          <InputUser placeholder="Confirmar Senha" type={"password"} onChange={(e) => setConfirmPassword(e.target.value)} />
+
+      
           <ButtonRegister type="submit" onClick={() => {
             handleRegisterUser()
             }}>Cadastrar</ButtonRegister>

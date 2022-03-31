@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { Dispatch, SetStateAction, useState } from "react";
 import Modal from "react-modal";
 import {
   ButtonClose,
@@ -10,8 +10,12 @@ import {
 } from "./styles";
 import { FaTimes } from "react-icons/fa";
 import api from "../../services/api";
+import { IProducts } from "../../pages/DashBoard";
+import { useToasts } from "@geist-ui/react";
 
 interface IModalRegisterProps {
+  products: IProducts[],
+  setProducts: Dispatch<SetStateAction<IProducts[]>>,
   isOpen: boolean,
   onRequestClose: () => void,
   
@@ -22,26 +26,61 @@ interface IProduct {
   quantity: number;
 }
 
-export function ModalProductsRegister({ isOpen, onRequestClose }: IModalRegisterProps) {
+
+
+export function ModalProductsRegister({  products, setProducts, isOpen, onRequestClose }: IModalRegisterProps) {
 
   const [name, setName] = useState("");
   const [obsProduct, setObsProduct] = useState("");
   const [quantity, setQuantity] = useState("");
-  const [products, setProduct] = useState<IProduct[]>([]);
+  const [, setToast] = useToasts();
+
 
   async function handleRegisterProduct() {
-    
+
+
     try {
+
+      if (name.length < 2) {
+        return setToast({
+          text: 'Nome do Produto precisa estar preenchido!.',
+          type: 'warning'
+        })
+      }
+      if (obsProduct.length < 2) {
+        return setToast({
+          text: 'Observação do Produto precisa estar preenchido!.',
+          type: 'warning'
+        })
+      }
+      if (quantity.length < 1 ) {
+        return setToast({
+            text: 'A quantidade precisa ser preenchida!.',
+            type: 'warning'
+          })
+      }
+       
+      const userLoggedString = localStorage.getItem("user_logged")
+      const currentData = userLoggedString ? JSON.parse(userLoggedString) : []
+
       const { data } = await api.post("products", {
-        id: "e9201d78-c3ba-4faa-9503-2074c145c254",
+        id_creator: currentData.id,
         name_product: name,
         obs_product: obsProduct,
         quantity: quantity
        
       });
-      
-      setProduct((state) => [...state, data]);
+
+      setProducts((state) => [...state, data]);
       onRequestClose()
+      setName("") 
+      setObsProduct("")
+      setQuantity("")
+
+      setToast({
+        text: 'Seu Produto foi criado com sucesso!.',
+        type: 'success'
+      })
       
     } catch (error) {
       console.log(error);
@@ -75,7 +114,7 @@ export function ModalProductsRegister({ isOpen, onRequestClose }: IModalRegister
           <InputUser placeholder="Nome do Produto" onChange={(e) => setName(e.target.value)} />
 
           <InputUser placeholder="Observação do Produto" onChange={(e) => setObsProduct(e.target.value)}/>
-          <InputUser placeholder="Quantidade" onChange={(e) => setQuantity(e.target.value)} />
+          <InputUser placeholder="Quantidade" type={"number"} onChange={(e) => setQuantity(e.target.value)} />
 
           <ButtonRegister type="submit" onClick={() => {
             handleRegisterProduct()

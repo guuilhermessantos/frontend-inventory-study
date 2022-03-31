@@ -79,12 +79,17 @@ export const DivButton = styled.div`
   `;
   
   export const ButtonAdd = styled.button`
+     display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    width: 13%;
     margin-top: 5px;
-    font-size: 1rem; // 16 pixels de font
+    font-size: 15px;
     color: #FFFFFF;  // 
-    background: var(--green); //
+    background: var(--red); //
     border: 0;
-    padding: 0 2rem; // 32 pixels na direita e esquerda
+    padding: 0 1rem; // 32 pixels na direita e esquerda
     border-radius: 0.25rem;
     height: 3rem;
     cursor: pointer;
