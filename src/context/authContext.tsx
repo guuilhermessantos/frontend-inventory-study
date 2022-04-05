@@ -24,7 +24,7 @@ export default function AuthProvider({children}: any) {
     async function handleLogin(email: string, password: string) {
         try {
 
-            if (email.length < 3 && password.length < 1) {
+            if (email.length < 3 || password.length < 1) {
                 return setToast({
                     text: 'Email e senha precisam estar preenchidos!',
                     type: 'warning'
@@ -44,11 +44,12 @@ export default function AuthProvider({children}: any) {
             setAuthenticated(true)
             navigate("/products ")
         } catch (error) {
-            console.log('oi')
             setToast({
                 text: 'Email e senha incorretos!.',
                 type: 'warning'
               })
+            
+
         }
     }
 
@@ -60,6 +61,9 @@ export default function AuthProvider({children}: any) {
         navigate('/')
     }
 
+    if (loading) {
+    return <h1> Loading </h1>
+    }
 
     return(
         <AuthContext.Provider value={{ authenticated, handleLogin , handleLogout }}>

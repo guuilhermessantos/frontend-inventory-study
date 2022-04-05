@@ -42,6 +42,29 @@ export function ModalUsersRegister({ isOpen, onRequestClose }: IModalRegisterPro
           type: 'warning'
         })
       }
+
+      if (email.length > 0 ) {
+        const usuario = email.substring(0, email.indexOf("@"))
+        const dominio = email.substring(email.indexOf("@")+ 1, email.length);
+
+        if ((usuario.length >=1) &&
+        (dominio.length >=3) &&
+        (usuario.search("@")===-1) &&
+        (dominio.search("@")===-1) &&
+        (usuario.search(" ")===-1) &&
+        (dominio.search(" ")===-1) &&
+        (dominio.search(".")!==-1) &&
+        (dominio.indexOf(".") >=1) &&
+        (dominio.lastIndexOf(".") < dominio.length - 1)) 
+        {}
+        else{
+          return setToast({
+            text: 'Email Invalido!.',
+            type: 'error'
+          })
+        }
+      }
+
       if (email.length < 3) {
         return setToast({
           text: 'Email precisa estar preenchido!.',
@@ -88,6 +111,10 @@ export function ModalUsersRegister({ isOpen, onRequestClose }: IModalRegisterPro
       setConfirmPassword("")
       
     } catch (error) {
+      setToast({
+        text: 'Email já esta sendo utilizado em outra conta !.',
+        type: 'error'
+      })
       
     }
   }
@@ -117,7 +144,7 @@ export function ModalUsersRegister({ isOpen, onRequestClose }: IModalRegisterPro
 
           <InputUser placeholder="Nome do Usuario"  onChange={(e) => setName(e.target.value)} />
 
-          <InputUser placeholder="Email" type={"email"} onChange={(e) => setEmail(e.target.value)} />
+          <InputUser placeholder="Email" type="email" onChange={(e) => setEmail(e.target.value)} />
 
           <InputUser placeholder="Senha" type={"password"} onChange={(e) => setPassword(e.target.value)} />
 

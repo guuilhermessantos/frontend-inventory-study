@@ -63,6 +63,8 @@ export function ModalProductsRegister({  products, setProducts, isOpen, onReques
       const userLoggedString = localStorage.getItem("user_logged")
       const currentData = userLoggedString ? JSON.parse(userLoggedString) : []
 
+      
+
       const { data } = await api.post("products", {
         id_creator: currentData.id,
         name_product: name,
@@ -83,7 +85,7 @@ export function ModalProductsRegister({  products, setProducts, isOpen, onReques
       })
       
     } catch (error) {
-      console.log(error);
+
     }
   }
   return (

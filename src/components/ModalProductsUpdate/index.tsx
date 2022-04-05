@@ -80,7 +80,7 @@ export function ModalProductsUpdate({ products, setProducts, isOpen, onRequestCl
     
 
     } catch (error) {
-      console.log(error);
+
     }
   }
 

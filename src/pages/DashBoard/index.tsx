@@ -21,6 +21,13 @@ export interface IProducts {
   quantity: string;
   created_at: string;
   updated_at: string;
+  idCreator: {
+    name: string;
+  }
+}
+
+export interface ICreator {
+  id_creator: string;
 }
 
 export function DashBoard() {
@@ -29,6 +36,7 @@ export function DashBoard() {
   const [isModalProductUpdate,setIsModalProductUpdate] = useState(false)
   const navigate = useNavigate()
 
+
   const [products, setProducts] = useState<IProducts[]>([]);
 
 
@@ -36,7 +44,7 @@ export function DashBoard() {
     navigate("/users")
   }
 
-   const userLoggedString = localStorage.getItem("user_logged")
+  const userLoggedString = localStorage.getItem("user_logged")
   const currentData = userLoggedString ? JSON.parse(userLoggedString) : []
  
 
@@ -55,17 +63,15 @@ export function DashBoard() {
 
   const getData = useCallback(async () => {
     const response = await api.get(`products`)
+
     const data = response.data
     setProducts(data)
   }, [products]) 
   
   useEffect(() => {
     getData()
-  }, [isModalProductUpdate]);
+  }, [isModalProductUpdate, isModalProductRegister ]);
 
-  // useEffect(() => {
-  //   if (products. === )
-  // }, [isModalProductUpdate]);
   
     return (
       <Container>

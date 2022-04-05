@@ -11,6 +11,7 @@ justify-content: center;
 
 export const ImageInventory = styled.img`
   width: 100%;
+  height: 100%;
 
 
 `;
@@ -72,6 +73,7 @@ export const DivButton = styled.div`
   width: 100%;
     display: flex;
    justify-content: space-between;
+   margin-top: 20px;
 
   `;
   

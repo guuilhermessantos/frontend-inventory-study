@@ -1,9 +1,10 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import React, { Dispatch, SetStateAction, useState } from 'react';
 import { ButtonDel, ButtonUpdate, Container,Table, TableBody, TableData, TableHeader, TableRow, TitleColumn, } from "./styles";
 import api from "../../services/api"
 import { format } from 'date-fns';
 import { useUpdateUser } from '../../context/updateUserContext';
 import { IUsers } from '../../pages/ConfigUsers';
+import { useToasts } from '@geist-ui/react';
 
 
 
@@ -21,6 +22,10 @@ export function TableUsersConfig({  users, setUsers, onOpenModalUpdate} : ITable
   const { setAdmin} = useUpdateUser();
   const {password, setPassword} = useUpdateUser();
   const {confirmPassword, setConfirmPassword} = useUpdateUser();
+  const [, setToast] = useToasts();
+
+  const [confirmUser, setConfirmUser ] = useState()
+
 
 
   function editUser(id: string, name: string, email: string, password: string, admin: boolean ) {
@@ -32,14 +37,38 @@ export function TableUsersConfig({  users, setUsers, onOpenModalUpdate} : ITable
     setConfirmPassword(password)
   }
  
-  async function deleteUser(id: string) {
+  async function deleteUser(id: string, admin: boolean) {
     try {
+      const userLoggedString = localStorage.getItem("user_logged")
+      const currentData = userLoggedString ? JSON.parse(userLoggedString) : []
+
+       if (currentData.id === id) {
+        return setToast({
+          text: 'Impossivel deletar você mesmo.',
+          type: 'error'
+        })
+       }
+
+       if (admin === true) {
+        return setToast({
+          text: 'Impossivel deletar administradores.',
+          type: 'error'
+        })
+       }
+
+      await api.get(`productsuser/${id}`);
+
+      
       await api.delete(`users/${id}`);
       
       setUsers((oldUsers) =>
         oldUsers.filter((user) => user.id !== id)
       );
     } catch (error) {
+      setToast({
+        text: 'Os produtos deste usuario, devem ser deletados primeiro',
+        type: 'error'
+      })
     }
   }
 
@@ -70,7 +99,7 @@ export function TableUsersConfig({  users, setUsers, onOpenModalUpdate} : ITable
                 </ButtonUpdate>
               </TableData>
               <TableData> 
-                <ButtonDel type="submit" id = "btnDelet" onClick={() => deleteUser(user.id)}>
+                <ButtonDel type="submit" id = "btnDelet" onClick={() => deleteUser(user.id, user.admin)}>
                   Deletar
                 </ButtonDel> 
               </TableData>

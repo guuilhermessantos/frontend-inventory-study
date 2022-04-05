@@ -76,6 +76,7 @@ export const DivButton = styled.div`
     width: 100%;
     display: flex;
     justify-content: space-between;
+    margin-top: 20px;
   `;
   
   export const ButtonAdd = styled.button`

@@ -50,6 +50,29 @@ export function ModalUsersUpdate({ isOpen, onRequestClose }: IModalUpdateProps) 
           type: 'warning'
         })
       }
+      
+      if (email.length > 0 ) {
+        const usuario = email.substring(0, email.indexOf("@"))
+        const dominio = email.substring(email.indexOf("@")+ 1, email.length);
+
+        if ((usuario.length >=1) &&
+        (dominio.length >=3) &&
+        (usuario.search("@")===-1) &&
+        (dominio.search("@")===-1) &&
+        (usuario.search(" ")===-1) &&
+        (dominio.search(" ")===-1) &&
+        (dominio.search(".")!==-1) &&
+        (dominio.indexOf(".") >=1) &&
+        (dominio.lastIndexOf(".") < dominio.length - 1)) 
+        {}
+        else{
+          return setToast({
+            text: 'Email Invalido!.',
+            type: 'error'
+          })
+        }
+      }
+
       if (email.length < 3) {
         return setToast({
           text: 'Email precisa estar preenchido!.',
@@ -70,8 +93,6 @@ export function ModalUsersUpdate({ isOpen, onRequestClose }: IModalUpdateProps) 
         })
       }
 
-      console.log('password', password)
-      console.log('confirmPassword', confirmPassword)
 
       if (password !== confirmPassword ) {
         return setToast({
@@ -97,7 +118,7 @@ export function ModalUsersUpdate({ isOpen, onRequestClose }: IModalUpdateProps) 
       })
 
     } catch (error) {
-      console.log(error);
+      
     }
   }
   

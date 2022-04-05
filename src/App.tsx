@@ -8,7 +8,7 @@ import UpdateUserContext from './context/updateUserContext';
 import {BrowserRouter,Route, Routes} from 'react-router-dom'
 import { Login } from './pages/Login';
 import AuthProvider from './context/authContext';
-import { GeistProvider, CssBaseline } from '@geist-ui/react'
+import { GeistProvider } from '@geist-ui/react'
 
 
 function App() {
